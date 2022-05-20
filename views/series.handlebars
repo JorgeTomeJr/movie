@@ -1,0 +1,15 @@
+<div class="container mt-5">
+    <div class="row" id="listaFilmes">
+        {{# each series }}
+            <div class="col-md-3 cardFilmes">
+                <a href="/serie/{{ this.id }}">
+                    <h1>{{ this.original_name }}</h1>
+                    {{{renderizaImagem this.poster_path}}}
+                    <span class="pontuacao">{{{renderizaEstrelas this.vote_average}}}</span>
+                </a>
+            </div>
+        {{/ each}}
+    </div>
+    
+</div>
+

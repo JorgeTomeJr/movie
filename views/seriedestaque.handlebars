@@ -1,0 +1,64 @@
+<!--<div class="container mt-5">
+    <div id="movie">
+        {{# with series }}
+            <h1>{{ name }}</h1>
+            {{# each genres}}
+                <span>{{this.name}}</span>
+            {{/ each}}
+            <span class="pontuacao">{{{renderizaEstrelas this.vote_average}}}</span>
+            {{{ renderizaImagem backdrop_path}}}
+            <p>{{ overview }}</p>
+        {{/ with}} 
+    </div>
+</div>-->
+
+{{# with series}}
+<div class="imagemFundo">
+    <img src="https://image.tmdb.org/t/p/w500/{{ this.backdrop_path }}" class="w-100">
+</div>
+<div class="container mt-5">
+    <div class="row text-justify" id="listaFilmes">
+        <div class="col-md-3">
+            <img  src="https://image.tmdb.org/t/p/w500/{{ this.poster_path }}" class="w-100">
+        </div>
+            <div class="col-md-9">
+                <h2>{{ title }}</h2>
+                    <div><span>Gênero: </span>
+                    {{# each genres}}
+                        <span>/{{this.name}}/</span>
+                    {{/ each}}
+                    </div>
+                    <p>Data Lançamento: {{first_air_date}}</p>
+                    <p>{{ overview }}</p>
+    {{/ with}}   
+                <div class="row">
+                    <h4 class="text-justify">Elenco</h4><!--Elenco-->
+                        {{# each credits }}
+                            <div class="col-md-3 mb-4">
+                                <img id="elenco" src="https://image.tmdb.org/t/p/w500/{{ this.profile_path }}">
+                                    <p class="desc-elenco">{{ this.name }}</p>
+                                    <p class="desc-elenco">{{this.character}}</p>
+                            </div>
+                        {{/ each}}
+                </div>
+            </div>
+    </div>
+    <div class="text-center mb-5">
+        {{# with trailer}}
+            <h1>Trailer</h1>
+            <iframe src="https://www.youtube.com/embed/{{this.key}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        {{/ with}}
+    </div>
+
+        <div class="row" id="listaFilmes">
+        <h2 class="mb-5 border-bottom">Filmes Recomendados</h2>
+            {{# each recommendation }}
+                <div class="col-md-2 cardFilmes">
+                    <a href="/filme/{{ this.id }}">
+                        <h1>{{ this.title }}</h1>
+                        <img src="https://image.tmdb.org/t/p/w500/{{ this.poster_path }}" class="w-100">
+                        <span class="pontuacao">{{{renderizaEstrelas this.vote_average}}}</span>
+                    </a>
+                </div>
+            {{/ each}}
+    </div>
